@@ -6,6 +6,7 @@
 
 html {
   font-family: 'Poppins', sans-serif;
+  background-color: rgba(10, 0, 150, 0.5);
 }
 
 .error {
@@ -20,6 +21,13 @@ input:focus {
   outline: none;
 }
 
+.login:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  --tw-bg-opacity: 0.2;
+  --tw-border-opacity: 0.2;
+  background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
 .login:hover {
   --tw-bg-opacity: 0.5;
   --tw-border-opacity: 0.5;

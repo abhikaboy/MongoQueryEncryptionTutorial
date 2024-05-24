@@ -39,10 +39,10 @@ function App() {
     <div class="flex bg-slate-950 bg-opacity-95 text-white h-screen w-center align-middle ">
       {isExploding && (
         <ConfettiExplosion
-          force={0.4}
+          force={2}
           duration={2200}
           particleCount={30}
-          width={400}
+          width={800}
           class="absolute left-1/2"
         />
       )}
@@ -52,15 +52,19 @@ function App() {
           setIsExploding(true)
         }}
         onMouseLeave={() => {
-          setIsExploding(false)
+          if (isExploding) {
+            setTimeout(() => {
+              setIsExploding(false)
+            }, 2000)
+          }
         }}
       >
         <p>Template by Abhik Ray </p>
       </div>
       <div
-        class="flex-auto content-center justify-center py-12 w-1/4 m-auto max-w-md
+        class={`flex-auto content-center justify-center py-12 w-1/4 m-auto max-w-md
       text-center rounded-xl bg-slate-900 border-2 border-solid  border-slate-950
-        drop-shadow-xl transition-all max-h-full"
+        drop-shadow-xl transition-all max-h-full ${loading ? 'animate-pulse' : ''}`}
       >
         <h1 class="text-2xl text-white p-4 font-medium mb-2">
           Queryable Encryption Authentication
@@ -84,14 +88,24 @@ function App() {
         <button
           class="w-2/3 transition-all bg-blue-400 bg-opacity-10 rounded-md p-3 mt-2 mb-4 border-4
          border-blue-900 border-opacity-30 login hover:cursor-pointer"
-          disabled={loading}
+          disabled={
+            loading ||
+            username === '' ||
+            password === '' ||
+            (loginMode === 'Register' && confirm === '')
+          }
+          onClick={() => {
+            setLoading(true)
+            setTimeout(() => {
+              setLoading(false)
+            }, 1500)
+          }}
         >
           {loginMode}
         </button>
         <p
           onClick={() => {
             setLoginMode(loginMode === 'Register' ? 'Login' : 'Register')
-            setLoading(true)
           }}
           class="text-slate-200 hover:underline"
         >
