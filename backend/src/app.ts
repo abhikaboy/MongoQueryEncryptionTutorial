@@ -8,14 +8,14 @@ import cors from 'cors'
 export const app = express()
 
 // Custom error handler
-function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+function errorHandler(err: Error, req: Request, res, next: NextFunction) {
   console.error(err.stack)
   res.status(500).json({ error: err.message })
 }
 
 // Default route
-function defaultRoute(req: Request, res: Response, next: NextFunction) {
-  res.sendStatus(404)
+function defaultRoute(req: Request, res, next: NextFunction) {
+  res.sendStatus(404).json({ error: 'Route not found' })
 }
 
 app.use(bodyParser.json())

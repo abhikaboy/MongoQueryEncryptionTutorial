@@ -1,5 +1,6 @@
 import express from 'express'
 import helloWorldRoutes from './helloWorld/helloWordHandlers'
+import authRoutes from './auth/authHandler'
 
 const router = express.Router()
 
@@ -9,5 +10,6 @@ router.get('/health', function(req, res) {
 })
 
 router.use('/helloWorld', helloWorldRoutes) // use routes from hello world component
+router.use('/auth', authRoutes) // use routes from hello world component
 
 export default router
